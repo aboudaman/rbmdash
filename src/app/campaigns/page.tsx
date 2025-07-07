@@ -2,7 +2,6 @@
 
 'use client'
 import { useState } from 'react';
-import GanttChart from '../components/GanttChart';
 import TaskList from '../components/TaskList';
 import { Task, Section } from '../types/types';
 
@@ -202,12 +201,6 @@ export default function Home() {
             )
         );
     };
-
-    // Filter tasks based on active view
-    const filteredTasks = activeView === 'all'
-        ? tasks
-        : tasks.filter(task => task.section === activeView);
-
     return (
         <div className="bg-gray-100 min-h-screen">
             <div className="container mx-auto p-4">
@@ -258,7 +251,6 @@ export default function Home() {
                         </div>
                     )}
                     <div className={showTaskPanel ? "lg:col-span-8" : "lg:col-span-12"}>
-                        <GanttChart tasks={filteredTasks} sections={sections} />
                     </div>
                 </div>
             </div>

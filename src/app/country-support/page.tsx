@@ -2,7 +2,6 @@
 
 'use client'
 import { useState, useEffect, useCallback } from 'react';
-import GanttChart from '../components/GanttChart';
 import TaskList from '../components/TaskList';
 import { Task, Section } from '../types/types';
 import { fetchSheetData } from '../services/googleSheetsService';
@@ -332,10 +331,6 @@ export default function Home() {
                     {/* Gantt Chart Panel */}
                     {(viewMode === 'split' || viewMode === 'gantt') && (
                         <div className={viewMode === 'split' ? 'lg:col-span-8' : 'lg:col-span-12'}>
-                            <GanttChart
-                                tasks={filteredTasks}
-                                sections={sections}
-                            />
                         </div>
                     )}
                 </div>

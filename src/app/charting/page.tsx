@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import GanttChartComponent from '@/app/components/GanttCharting';
 
 const GanttPage: React.FC = () => {
     return (
@@ -102,7 +101,6 @@ const GanttPage: React.FC = () => {
                     </div>
 
                     {/* Main Gantt Chart */}
-                    <GanttChartComponent />
 
                     {/* Additional Information */}
                     {/*<div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">*/}
