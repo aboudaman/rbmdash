@@ -1,11 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import {
     Calendar, Filter, AlertTriangle, CheckCircle, Clock, Pause, XCircle, Users,
-    BarChart3, Settings, Search, Download, RefreshCw, FileText, Zap, Target, Eye, EyeOff, Layers, ChevronDown
+    Download, RefreshCw, FileText, Zap, Target, Eye, EyeOff, Layers, ChevronDown
 } from 'lucide-react';
 
 const TechAssistPM = () => {
-    const [activeView, setActiveView] = useState('gantt');
+    // const [activeView, setActiveView] = useState('gantt');
     const [activeFilter, setActiveFilter] = useState('all');
     const [showCompleted, setShowCompleted] = useState(true);
     const [currentTimeView, setCurrentTimeView] = useState('quarter');
@@ -20,15 +20,15 @@ const TechAssistPM = () => {
         }));
     };
 
-    const navigationTabs = [
-        { id: 'dashboard', icon: BarChart3, label: 'Dashboard' },
-        { id: 'gantt', icon: Calendar, label: 'Gantt Chart', active: true },
-        { id: 'requests', icon: FileText, label: 'Country Requests' },
-        { id: 'tasks', icon: Target, label: 'Tasks & Roadmaps' },
-        { id: 'partners', icon: Users, label: 'Partners' },
-        { id: 'analytics', icon: BarChart3, label: 'Analytics' },
-        { id: 'settings', icon: Settings, label: 'Settings' }
-    ];
+    // const navigationTabs = [
+    //     { id: 'dashboard', icon: BarChart3, label: 'Dashboard' },
+    //     { id: 'gantt', icon: Calendar, label: 'Gantt Chart', active: true },
+    //     { id: 'requests', icon: FileText, label: 'Country Requests' },
+    //     { id: 'tasks', icon: Target, label: 'Tasks & Roadmaps' },
+    //     { id: 'partners', icon: Users, label: 'Partners' },
+    //     { id: 'analytics', icon: BarChart3, label: 'Analytics' },
+    //     { id: 'settings', icon: Settings, label: 'Settings' }
+    // ];
 
     const statusFilters = [
         { id: 'all', icon: Layers, color: 'bg-gray-100 text-gray-700' },
@@ -170,21 +170,21 @@ const TechAssistPM = () => {
         }
     };
 
-    const getCountryDependencies = (country) => {
-        const countryDeps = [];
-        Object.entries(campaignDependencies).forEach(([campaign, data]) => {
-            data.dependencies.forEach(dep => {
-                countryDeps.push({
-                    ...dep,
-                    campaign,
-                    campaignName: data.name,
-                    campaignColor: data.color,
-                    country
-                });
-            });
-        });
-        return countryDeps;
-    };
+    // const getCountryDependencies = (country) => {
+    //     const countryDeps = [];
+    //     Object.entries(campaignDependencies).forEach(([campaign, data]) => {
+    //         data.dependencies.forEach(dep => {
+    //             countryDeps.push({
+    //                 ...dep,
+    //                 campaign,
+    //                 campaignName: data.name,
+    //                 campaignColor: data.color,
+    //                 country
+    //             });
+    //         });
+    //     });
+    //     return countryDeps;
+    // };
 
     const getStatusIcon = (status) => {
         const icons = {
@@ -264,7 +264,7 @@ const TechAssistPM = () => {
     const renderTimelineBar = (project) => {
         const headers = getTimelineHeaders();
         const isQuarterView = currentTimeView === 'quarter';
-        const unitCount = isQuarterView ? 4 : 12;
+        // const unitCount = isQuarterView ? 4 : 12;
         const unitKey = isQuarterView ? 'quarter' : 'month';
         const startUnit = project[unitKey] - 1;
         const durationDays = parseInt(project.duration);
@@ -502,7 +502,7 @@ const TechAssistPM = () => {
                                             <h3 className="text-sm font-semibold text-gray-800">{country}</h3>
                                         </div>
                                     </div>
-                                    {countryProjects.map((project, index) => (
+                                    {countryProjects.map((project) => (
                                         <div key={project.id} className="grid grid-cols-12 gap-2 p-3 hover:bg-gray-50 relative transition-colors">
                                             <div className="col-span-2"></div>
                                             <div className="col-span-3">
