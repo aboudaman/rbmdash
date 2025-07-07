@@ -2,114 +2,18 @@
 
 'use client'
 import { useState } from 'react';
-import GanttChart from './components/GanttChart';
-import TaskList from './components/TaskList';
-import { Task, Section } from './types/types';
+import GanttChart from '../components/GanttChart';
+import TaskList from '../components/TaskList';
+import { Task, Section } from '../types/types';
 
 const sections: Section[] = [
-    { id: 'gc8', name: 'GC8' },
-    { id: 'nsp', name: 'NSP' },
+
     { id: 'smc', name: 'SMC Campaign' },
     { id: 'itn', name: 'ITN Campaign' },
     { id: 'irs', name: 'IRS Campaign' },
-    { id: 'mtr', name: 'MTR' },
 ];
 
 const initialTasks: Task[] = [
-    // GC8 Section
-    {
-        id: 'gc8-1',
-        name: 'Malaria Program Review',
-        section: 'gc8',
-        startDate: new Date(2025, 3, 1), // April 1, 2025
-        duration: 60,
-        dependencies: [],
-        completed: false,
-    },
-    {
-        id: 'gc8-2',
-        name: 'NSP at Mid-Level completed?',
-        section: 'gc8',
-        startDate: new Date(2025, 4, 31), // After gc8-1
-        duration: 45,
-        dependencies: ['gc8-1'],
-        completed: false,
-    },
-    {
-        id: 'gc8-3',
-        name: 'Sub National Tailoring',
-        section: 'gc8',
-        startDate: new Date(2025, 6, 15), // After gc8-2
-        duration: 30,
-        dependencies: ['gc8-2'],
-        completed: false,
-    },
-    {
-        id: 'gc8-4',
-        name: 'Malaria Matchbox – if priority country',
-        section: 'gc8',
-        startDate: new Date(2025, 6, 15), // After gc8-2
-        duration: 45,
-        dependencies: ['gc8-2'],
-        completed: false,
-    },
-
-    // NSP Section
-    {
-        id: 'nsp-1',
-        name: 'Research',
-        section: 'nsp',
-        startDate: new Date(2025, 3, 15), // April 15, 2025
-        duration: 90,
-        dependencies: [],
-        completed: false,
-        comments: 'Change to NSP can be proposed based on account of research result',
-    },
-    {
-        id: 'nsp-2',
-        name: 'Costing',
-        section: 'nsp',
-        startDate: new Date(2025, 6, 14), // After nsp-1
-        duration: 30,
-        dependencies: ['nsp-1'],
-        completed: false,
-    },
-    {
-        id: 'nsp-3',
-        name: 'Operation Plan',
-        section: 'nsp',
-        startDate: new Date(2025, 7, 14), // After nsp-2
-        duration: 45,
-        dependencies: ['nsp-2'],
-        completed: false,
-    },
-    {
-        id: 'nsp-4',
-        name: 'Monitoring and Evaluation',
-        section: 'nsp',
-        startDate: new Date(2025, 8, 28), // After nsp-3
-        duration: 30,
-        dependencies: ['nsp-3'],
-        completed: false,
-    },
-    {
-        id: 'nsp-5',
-        name: 'Procurement',
-        section: 'nsp',
-        startDate: new Date(2025, 8, 28), // After nsp-3
-        duration: 60,
-        dependencies: ['nsp-3'],
-        completed: false,
-    },
-    {
-        id: 'nsp-6',
-        name: 'Supply Management',
-        section: 'nsp',
-        startDate: new Date(2025, 10, 27), // After nsp-5
-        duration: 45,
-        dependencies: ['nsp-5'],
-        completed: false,
-    },
 
     // SMC Campaign Section
     {
@@ -134,16 +38,16 @@ const initialTasks: Task[] = [
         id: 'smc-3',
         name: 'Micro Planning',
         section: 'smc',
-        startDate: new Date(2025, 6, 16), // After smc-1
+        startDate: new Date(2025, 7, 16), // After smc-1
         duration: 30,
-        dependencies: ['smc-1'],
+        dependencies: ['smc-2'],
         completed: false,
     },
     {
         id: 'smc-4',
         name: 'Digitalization',
         section: 'smc',
-        startDate: new Date(2025, 7, 16), // After smc-3
+        startDate: new Date(2025, 8, 16), // After smc-3
         duration: 30,
         dependencies: ['smc-3'],
         completed: false,
@@ -152,7 +56,7 @@ const initialTasks: Task[] = [
         id: 'smc-5',
         name: 'Monitoring and Evaluation',
         section: 'smc',
-        startDate: new Date(2025, 8, 15), // After smc-4
+        startDate: new Date(2025, 9, 15), // After smc-4
         duration: 45,
         dependencies: ['smc-4'],
         completed: false,
@@ -181,16 +85,16 @@ const initialTasks: Task[] = [
         id: 'itn-3',
         name: 'Micro Planning',
         section: 'itn',
-        startDate: new Date(2025, 7, 29), // After itn-1
+        startDate: new Date(2025, 8, 29), // After itn-1
         duration: 30,
-        dependencies: ['itn-1'],
+        dependencies: ['itn-2'],
         completed: false,
     },
     {
         id: 'itn-4',
         name: 'Digitalization',
         section: 'itn',
-        startDate: new Date(2025, 8, 28), // After itn-3
+        startDate: new Date(2025, 9, 28), // After itn-3
         duration: 30,
         dependencies: ['itn-3'],
         completed: false,
@@ -199,7 +103,7 @@ const initialTasks: Task[] = [
         id: 'itn-5',
         name: 'Monitoring and Evaluation',
         section: 'itn',
-        startDate: new Date(2025, 9, 28), // After itn-4
+        startDate: new Date(2025, 10, 28), // After itn-4
         duration: 45,
         dependencies: ['itn-4'],
         completed: false,
@@ -228,16 +132,16 @@ const initialTasks: Task[] = [
         id: 'irs-3',
         name: 'Micro Planning',
         section: 'irs',
-        startDate: new Date(2025, 9, 16), // After irs-1
+        startDate: new Date(2025, 10, 16), // After irs-1
         duration: 30,
-        dependencies: ['irs-1'],
+        dependencies: ['irs-2'],
         completed: false,
     },
     {
         id: 'irs-4',
         name: 'Digitalization',
         section: 'irs',
-        startDate: new Date(2025, 10, 16), // After irs-3
+        startDate: new Date(2025, 11, 16), // After irs-3
         duration: 30,
         dependencies: ['irs-3'],
         completed: false,
@@ -246,40 +150,13 @@ const initialTasks: Task[] = [
         id: 'irs-5',
         name: 'Monitoring and Evaluation',
         section: 'irs',
-        startDate: new Date(2025, 11, 16), // After irs-4
+        startDate: new Date(2025, 12, 16), // After irs-4
         duration: 45,
         dependencies: ['irs-4'],
         completed: false,
     },
 
-    // MTR Section
-    {
-        id: 'mtr-1',
-        name: 'Case Management Assessment',
-        section: 'mtr',
-        startDate: new Date(2025, 10, 1), // November 1, 2025
-        duration: 30,
-        dependencies: [],
-        completed: false,
-    },
-    {
-        id: 'mtr-2',
-        name: 'Vector Control Management Assessment',
-        section: 'mtr',
-        startDate: new Date(2025, 11, 1), // After mtr-1
-        duration: 30,
-        dependencies: ['mtr-1'],
-        completed: false,
-    },
-    {
-        id: 'mtr-3',
-        name: 'Community Rights Gender Assessment',
-        section: 'mtr',
-        startDate: new Date(2025, 0, 1), // After mtr-2 (January 1, 2026)
-        duration: 30,
-        dependencies: ['mtr-2'],
-        completed: false,
-    },
+
 ];
 
 export default function Home() {
@@ -335,7 +212,7 @@ export default function Home() {
         <div className="bg-gray-100 min-h-screen">
             <div className="container mx-auto p-4">
                 <header className="bg-white shadow-md rounded-lg p-4 mb-6 flex justify-between items-center">
-                    <h1 className="text-3xl font-bold text-indigo-700">Malaria Campaign Planning</h1>
+                    <h1 className="text-3xl font-bold text-indigo-700">Campaigns</h1>
                     <div>
                         <button
                             onClick={() => setShowTaskPanel(!showTaskPanel)}
